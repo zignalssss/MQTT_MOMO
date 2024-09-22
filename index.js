@@ -3,6 +3,7 @@ const express = require('express');
 const mqtt = require('mqtt');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const { json } = require('express/lib/response');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,7 +21,9 @@ mqttClient.on('connect', () => {
 
 // ใช้ body-parser เพื่อแปลงข้อมูล JSON
 app.use(bodyParser.json());
-
+app.get("/",(req,res) =>{
+    res.send("Welcome Line MOMO SEVER!")
+})
 app.post('/webhook', (req, res) => {
   const events = req.body.events;
 
